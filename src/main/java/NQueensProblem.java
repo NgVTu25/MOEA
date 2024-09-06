@@ -8,13 +8,12 @@ import java.util.stream.Collectors;
 public class NQueensProblem extends AbstractProblem {
 
     private final int n;
-    private final Set<List<Integer>> validSolutions;
+    private final Set<List<String>> validSolutions;
 
     public NQueensProblem(int n) {
         super(n, 1);
         this.n = n;
         this.validSolutions = new HashSet<>();
-
     }
 
     @Override
@@ -24,8 +23,9 @@ public class NQueensProblem extends AbstractProblem {
 
         solution.setObjective(0, conflicts);
         if (conflicts == 0) {
-            List<Integer> solutionList = Arrays.stream(variables).boxed().collect(Collectors.toList());
-            validSolutions.add(solutionList);        }
+            List<String> solutionCoords = convertToBoard(variables);
+            validSolutions.add(solutionCoords);  // Lưu tọa độ
+        }
     }
 
     @Override
@@ -49,7 +49,16 @@ public class NQueensProblem extends AbstractProblem {
         return conflicts;
     }
 
-    public Set<List<Integer>> getValidSolutions() {
+    private List<String> convertToBoard(int[] queens) {
+        List<String> coords = new ArrayList<>();
+        for (int row = 0; row < queens.length; row++) {
+            int col = queens[row];
+            coords.add("(" + (row + 1) + ", " + (col + 1) + ")");
+        }
+        return coords;
+    }
+
+    public Set<List<String>> getValidSolutions() {
         return validSolutions;
     }
 }
