@@ -1,6 +1,6 @@
 import java.util.List;
 import java.util.Set;
-
+public class Main {
 public static void main(String[] args) {
     int n = 8;
 
@@ -15,8 +15,9 @@ public static void main(String[] args) {
 
     Set<List<String>> validSolutions = problem.getValidSolutions();
 
-    System.out.println("SOLUTIONS " + validSolutions.size() + " ");
+    System.out.println(STR."SOLUTIONS \{validSolutions.size()} ");
     for (List<String> solution : validSolutions) {
         System.out.println(solution);
+        }
     }
 }
